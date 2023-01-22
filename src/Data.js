@@ -1,73 +1,69 @@
 import * as d3 from "d3";
 
-let url="https://docs.google.com/spreadsheets/d/e/2PACX-1vRpKLJZyuUWLas1lxwPmheFdRpl2gL2TvWlc21X62yG3OF8sFnS-5TRtHE486eLpWluAMj_yNW10CS5/pub?gid=2006021335&single=true&output=csv";  
+let url="https://docs.google.com/spreadsheets/d/e/2PACX-1vSmIgHA9m-9NI2a3UXPiwSZAF4AOAmH6GnoK0ruXx-8KB1raSk0U2USn1TKQ-cY5ohjr-P5KXwFgH79/pub?gid=1812741115&single=true&output=csv";  
 
-  export const fetchDailyDataSpeed = async () => {
+  export const fetchdailyFatFreeMass = async () => {
     try {
-        let speedMap = new Map();
+        let fatFreeMass = new Map();
         await d3.csv(url).then((data) => {
             //if (error) throw error;
             
             for (var i=0;i<data.length;i++){
-              if (data[i]['com.samsung.health.exercise.exercise_type'] === "14001" && parseInt(data[i]['total_calorie']) >400  ){
-              
-                speedMap.set(data[i]['com.samsung.health.exercise.start_time'],data[i]['com.samsung.health.exercise.mean_speed']);
-              
+                if (parseInt(data[i]['fat_free']) >0) {
+                fatFreeMass.set(data[i]['start_time'],data[i]['fat_free']);
+                }
               }
-            }
-            speedMap = new Map([...speedMap].sort());
+            fatFreeMass = new Map([...fatFreeMass].sort());
       
           })
-          if (speedMap != undefined) {
-            return speedMap;
+          if (fatFreeMass != undefined) {
+            return fatFreeMass;
           }
    
     } catch (err) {
       console.log(err);
     }
   };
-  export const fetchDailyDataCalories = async () => {
+  export const fetchdailyBodyFatMass = async () => {
     try {
-        let calorieMap = new Map();
+        let bodyFat = new Map();
         await d3.csv(url).then((data) => {
             //if (error) throw error;
             
             for (var i=0;i<data.length;i++){
-                if (data[i]['com.samsung.health.exercise.exercise_type'] === "14001" && parseInt(data[i]['total_calorie']) >400  ){
+              if (parseInt(data[i]['body_fat']) >0) { 
+                bodyFat.set(data[i]['start_time'],data[i]['body_fat']);
+              }
                 
-                calorieMap.set(data[i]['com.samsung.health.exercise.start_time'],data[i]['total_calorie']);
-                
-                }
             }
-        calorieMap = new Map([...calorieMap].sort());
-        //console.log(calorieMap);
+        bodyFat = new Map([...bodyFat].sort());
+        //console.log(bodyFat);
         })
-        if (calorieMap != undefined) {
-        return calorieMap;
+        if (bodyFat != undefined) {
+        return bodyFat;
         }
     } catch (err) {
       console.log(err);
     }
   };
 
-  export const fetchDailyDataHeartRate = async () => {
+  export const fetchdailySkeletalMuscleMass = async () => {
     try {
-        let calorieMap = new Map();
+        let skeletalMuscle = new Map();
         await d3.csv(url).then((data) => {
             //if (error) throw error;
             
-            for (var i=0;i<data.length;i++){
-                if (data[i]['com.samsung.health.exercise.exercise_type'] === "14001" && parseInt(data[i]['total_calorie']) >400  ){
-                
-                calorieMap.set(data[i]['com.samsung.health.exercise.start_time'],data[i]['com.samsung.health.exercise.mean_heart_rate']);
-                
-                }
+            for (var i=0;i<data.length;i++){                
+              if (parseInt(data[i]['skeletal_muscle']) >0) {
+                skeletalMuscle.set(data[i]['start_time'],data[i]['skeletal_muscle']);
+              }
+              
             }
-        calorieMap = new Map([...calorieMap].sort());
-        //console.log(calorieMap);
+          skeletalMuscle = new Map([...skeletalMuscle].sort());
+        //console.log(bodyFat);
         })
-        if (calorieMap != undefined) {
-        return calorieMap;
+        if (skeletalMuscle != undefined) {
+        return skeletalMuscle;
         }
     } catch (err) {
       console.log(err);

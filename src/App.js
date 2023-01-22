@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { fetchDailyDataCalories,fetchDailyDataSpeed,fetchDailyDataHeartRate } from "./Data";
+import { fetchdailyBodyFatMass,fetchdailyFatFreeMass,fetchdailySkeletalMuscleMass } from "./Data";
 import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 
 const LineChart = () => {
-  const [dailyDataCalories, setDailyDataCalories] = useState([]);
-  const [dailyDataSpeed, setDailyDataSpeed] = useState([]);
-  const [dailyDataHeartRate, setDailyDataHeartRate] = useState([]);
+  const [dailyBodyFatMass, setdailyBodyFatMass] = useState([]);
+  const [dailyFatFreeMass, setdailyFatFreeMass] = useState([]);
+  const [dailySkeletalMuscleMass, setdailySkeletalMuscleMass] = useState([]);
 
   const fetchApi = async () => {
-    const dailyDataCalories = await fetchDailyDataCalories();
-    setDailyDataCalories(dailyDataCalories);
-    const dailyDataSpeed = await fetchDailyDataSpeed();
-    setDailyDataSpeed(dailyDataSpeed);
-    const dailyDataHeartRate = await fetchDailyDataHeartRate();
-    setDailyDataHeartRate(dailyDataHeartRate);
+    const dailyBodyFatMass = await fetchdailyBodyFatMass();
+    setdailyBodyFatMass(dailyBodyFatMass);
+    const dailyFatFreeMass = await fetchdailyFatFreeMass();
+    setdailyFatFreeMass(dailyFatFreeMass);
+    const dailySkeletalMuscleMass = await fetchdailySkeletalMuscleMass();
+    setdailySkeletalMuscleMass(dailySkeletalMuscleMass);
   };
 
 
@@ -22,15 +22,15 @@ const LineChart = () => {
     fetchApi();
   }, []);
   
-  const lineChartCalories = dailyDataCalories  ? (
+  const lineBodyFat = dailyBodyFatMass  ? (
 
     <Line
       data={{
-        labels: Array.from(dailyDataCalories.keys()),
+        labels: Array.from(dailyBodyFatMass.keys()),
         datasets: [
           {
-            data: Array.from(dailyDataCalories.entries()),
-            label: "Calories (calories)",
+            data: Array.from(dailyBodyFatMass.entries()),
+            label: "Body Fat Mass (Goal should be around 8-19%)",
             borderColor: 'rgb(75, 192, 192)',
             fill: false,
           }
@@ -40,15 +40,15 @@ const LineChart = () => {
     
   ) : null;
 
-  const lineChartSpeed = dailyDataSpeed  ? (
+  const lineChartFatFreeMass = dailyFatFreeMass  ? (
 
     <Line
       data={{
-        labels: Array.from(dailyDataSpeed.keys()),
+        labels: Array.from(dailyFatFreeMass.keys()),
         datasets: [
           {
-            data: Array.from(dailyDataSpeed.entries()),
-            label: "Speed (meters per second)",
+            data: Array.from(dailyFatFreeMass.entries()),
+            label: "Fat Free Mass (Goal should be around 78-90%)",
             borderColor: 'rgb(75, 192, 192)',
             fill: false,
           }
@@ -58,15 +58,15 @@ const LineChart = () => {
     
   ) : null;
 
-  const lineChartHeartRate = dailyDataHeartRate  ? (
+  const lineChartSkeletalMuscleMass = dailySkeletalMuscleMass  ? (
 
     <Line
       data={{
-        labels: Array.from(dailyDataHeartRate.keys()),
+        labels: Array.from(dailySkeletalMuscleMass.keys()),
         datasets: [
           {
-            data: Array.from(dailyDataHeartRate.entries()),
-            label: "Mean Heart Rate (beats per minute)",
+            data: Array.from(dailySkeletalMuscleMass.entries()),
+            label: "Skeletal Muscle Mass (Goal should be around 75jk-89%)",
             borderColor: 'rgb(75, 192, 192)',
             fill: false,
           }
@@ -78,10 +78,10 @@ const LineChart = () => {
 
   return (
     <>
-      <center><h1>Swimming Metrics</h1></center>
-      <div>{lineChartCalories}</div>
-      <div>{lineChartSpeed}</div>
-      <div>{lineChartHeartRate}</div>
+      <center><h1>Strength Training Metrics</h1></center>
+      <div>{lineBodyFat}</div>
+      <div>{lineChartFatFreeMass}</div>
+      <div>{lineChartSkeletalMuscleMass}</div>
     </>
   );
 };

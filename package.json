@@ -1,7 +1,7 @@
 {
-  "name": "swimmingtracking",
+  "name": "strengthtraining",
   "version": "0.1.0",
-  "homepage": "https://justinbaskaran.github.io/SwimmingTracking",
+  "homepage": "https://justinbaskaran.github.io/StrengthTraining",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
