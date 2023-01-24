@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 
-let url="https://docs.google.com/spreadsheets/d/e/2PACX-1vSmIgHA9m-9NI2a3UXPiwSZAF4AOAmH6GnoK0ruXx-8KB1raSk0U2USn1TKQ-cY5ohjr-P5KXwFgH79/pub?gid=1812741115&single=true&output=csv";  
+let url="https://docs.google.com/spreadsheets/d/e/2PACX-1vSmIgHA9m-9NI2a3UXPiwSZAF4AOAmH6GnoK0ruXx-8KB1raSk0U2USn1TKQ-cY5ohjr-P5KXwFgH79/pub?output=csv";  
 
   export const fetchdailyFatFreeMass = async () => {
     try {
