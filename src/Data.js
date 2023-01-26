@@ -31,7 +31,9 @@ let url="https://docs.google.com/spreadsheets/d/e/2PACX-1vSmIgHA9m-9NI2a3UXPiwSZ
             //if (error) throw error;
             
             for (var i=0;i<data.length;i++){
-              if (parseInt(data[i]['body_fat']) >0) { 
+              // 01-10-2023 is the first date that i used my real Weight...not the same value as the 
+              // previous measurement....
+              if (Date.parse(data[i]['start_time'])>Date.parse("2023-01-10 23:59:59")) { 
                 weight.set(data[i]['start_time'],parseInt(data[i]['weight'])*2.20462);
               }
                 
