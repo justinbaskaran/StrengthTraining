@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { fetchdailyBodyFatMass,fetchdailyFatFreeMass,fetchdailySkeletalMuscleMass } from "./Data";
+import { fetchdailyWeight,fetchdailyFatFreeMass,fetchdailySkeletalMuscleMass } from "./Data";
 import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 
 const LineChart = () => {
-  const [dailyBodyFatMass, setdailyBodyFatMass] = useState([]);
+  const [dailyWeight, setdailyWeight] = useState([]);
   const [dailyFatFreeMass, setdailyFatFreeMass] = useState([]);
   const [dailySkeletalMuscleMass, setdailySkeletalMuscleMass] = useState([]);
 
   const fetchApi = async () => {
-    const dailyBodyFatMass = await fetchdailyBodyFatMass();
-    setdailyBodyFatMass(dailyBodyFatMass);
+    const dailyWeight = await fetchdailyWeight();
+    setdailyWeight(dailyWeight);
     const dailyFatFreeMass = await fetchdailyFatFreeMass();
     setdailyFatFreeMass(dailyFatFreeMass);
     const dailySkeletalMuscleMass = await fetchdailySkeletalMuscleMass();
@@ -22,15 +22,15 @@ const LineChart = () => {
     fetchApi();
   }, []);
   
-  const lineBodyFat = dailyBodyFatMass  ? (
+  const lineWeight = dailyWeight  ? (
 
     <Line
       data={{
-        labels: Array.from(dailyBodyFatMass.keys()),
+        labels: Array.from(dailyWeight.keys()),
         datasets: [
           {
-            data: Array.from(dailyBodyFatMass.entries()),
-            label: "Body Fat Mass (Goal should be around 8-19%)",
+            data: Array.from(dailyWeight.entries()),
+            label: "Weight (lbs)",
             borderColor: 'rgb(75, 192, 192)',
             fill: false,
           }
@@ -79,7 +79,7 @@ const LineChart = () => {
   return (
     <>
       <center><h1>Strength Training Metrics</h1></center>
-      <div>{lineBodyFat}</div>
+      <div>{lineWeight}</div>
       <div>{lineChartFatFreeMass}</div>
       <div>{lineChartSkeletalMuscleMass}</div>
     </>

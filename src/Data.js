@@ -24,23 +24,23 @@ let url="https://docs.google.com/spreadsheets/d/e/2PACX-1vSmIgHA9m-9NI2a3UXPiwSZ
       console.log(err);
     }
   };
-  export const fetchdailyBodyFatMass = async () => {
+  export const fetchdailyWeight = async () => {
     try {
-        let bodyFat = new Map();
+        let weight = new Map();
         await d3.csv(url).then((data) => {
             //if (error) throw error;
             
             for (var i=0;i<data.length;i++){
               if (parseInt(data[i]['body_fat']) >0) { 
-                bodyFat.set(data[i]['start_time'],data[i]['body_fat']);
+                weight.set(data[i]['start_time'],parseInt(data[i]['weight'])*2.20462);
               }
                 
             }
-        bodyFat = new Map([...bodyFat].sort());
-        //console.log(bodyFat);
+        weight = new Map([...weight].sort());
+        //console.log(weight);
         })
-        if (bodyFat != undefined) {
-        return bodyFat;
+        if (weight != undefined) {
+        return weight;
         }
     } catch (err) {
       console.log(err);
