@@ -15,8 +15,13 @@ const LineChart = () => {
     setdailyFatFreeMass(dailyFatFreeMass);
     const dailySkeletalMuscleMass = await fetchdailySkeletalMuscleMass();
     setdailySkeletalMuscleMass(dailySkeletalMuscleMass);
+    Chart.defaults.color = "#FFFFFF";
   };
 
+  const options = {
+    scales: {
+    }
+  };
 
   useEffect(() => {
     fetchApi();
@@ -25,6 +30,7 @@ const LineChart = () => {
   const lineWeight = dailyWeight  ? (
 
     <Line
+      options={options}
       data={{
         labels: Array.from(dailyWeight.keys()),
         datasets: [
@@ -43,6 +49,7 @@ const LineChart = () => {
   const lineChartFatFreeMass = dailyFatFreeMass  ? (
 
     <Line
+      options={options}
       data={{
         labels: Array.from(dailyFatFreeMass.keys()),
         datasets: [
@@ -61,7 +68,8 @@ const LineChart = () => {
   const lineChartSkeletalMuscleMass = dailySkeletalMuscleMass  ? (
 
     <Line
-      data={{
+        options={options}
+        data={{
         labels: Array.from(dailySkeletalMuscleMass.keys()),
         datasets: [
           {
