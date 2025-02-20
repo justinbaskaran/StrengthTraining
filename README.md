@@ -1,8 +1,8 @@
-Swim Tracking
+Strength Tracking
 
 
 Purpose:
-The purpose of this repository is to track the development and provide source code for the React app used to track my Swimming progress.
+The purpose of this repository is to track the development and provide source code for the React app used to track my strength training progress.
 
 
 Methdology:
@@ -12,11 +12,11 @@ Methdology:
   
 2) Once I get the data from google drive, it will be parsed and displayed on the front-end. To show a few key statistics:
 
-      a) Calories - This should go up with time. I plan to increase calories incrementally. 
+      a) Weight - This should go down with time, and then stagnate, as fat turns into muscle.
       
-      b) Speed - This should go up, with time.
+      b) Fat Free Mass - This should go up. 
       
-      c) Mean Heart Rate - As you become a better swimmer, this time should steadily go down
+      c) Skeletal Muscle Mass- This should go up.
 
 3) To evaluate the above stastistics, I will be using a line graph. To track these three metrics over time (time is x, metric is Y).
 
